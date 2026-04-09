@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letter Box</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: lightpink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* BOX */
+.box {
+  width: 160px;
+  height: 160px;
+  background: deeppink;
+  border-radius: 12px;
+  position: relative;
+}
+
+/* LID */
+.lid {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background: deeppink;
+  top: 0;
+  left: 0;
+  transform-origin: top;
+  transition: 0.5s;
+  pointer-events: none; /* IMPORTANT FIX */
+}
+
+/* LETTER */
+.letter {
+  position: absolute;
+  width: 110px;
+  height: 70px;
+  background: lightgreen;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+/* TEXT */
+.text {
+  color: black;
+  display: none;
+}
+
+/* OPEN */
+.box.open .lid {
+  transform: rotateX(120deg);
+}
+
+.box.open .letter {
+  transform: translateX(-50%) translateY(-20px);
+  opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="box">
+  <div class="lid"></div>
+
+  <div class="letter" id="letter">
+    <div class="text" id="text">chamar soja</div>
+  </div>
+</div>
+
+<script>
+const box = document.getElementById("box");
+const letter = document.getElementById("letter");
+const text = document.getElementById("text");
+
+// open box
+box.addEventListener("click", function () {
+  box.classList.add("open");
+});
+
+// show text
+letter.addEventListener("click", function (e) {
+  e.stopPropagation();
+  text.style.display = "block";
+});
+</script>
+
+</body>
+</html>
