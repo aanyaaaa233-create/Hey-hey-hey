@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Letter Box</title>
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: lightpink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  background: deeppink;
+  position: relative;
+  border-radius: 10px;
+}
+
+.lid {
+  width: 100%;
+  height: 50%;
+  background: deeppink;
+  position: absolute;
+  top: 0;
+  transform-origin: top;
+  transition: 0.5s;
+}
+
+.letter {
+  width: 100px;
+  height: 70px;
+  background: lightgreen;
+  position: absolute;
+  bottom: 10px;
+  left: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.text {
+  display: none;
+  color: black;
+}
+
+.open .lid {
+  transform: rotateX(120deg);
+}
+
+.open .letter {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" onclick="openBox()">
+  <div class="lid"></div>
+  <div class="letter" onclick="showText(event)">
+    <div class="text" id="text">chamar soja</div>
+  </div>
+</div>
+
+<script>
+function openBox() {
+  document.querySelector('.box').classList.add('open');
+}
+
+function showText(e) {
+  e.stopPropagation();
+  document.getElementById('text').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
